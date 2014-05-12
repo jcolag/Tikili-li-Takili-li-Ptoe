@@ -15,7 +15,7 @@ Possibly the single most useful feature is that, to my knowledge, no GTK+ tutori
 
 Maybe that's a bad thing, though.  I don't know.
 
-Regardless, if it helps anyone else, it's worth posting.  And Tikili-li-Takili-li-Ptoe is, you have to admit, a pretty great name for the purpose...
+Regardless, if it helps anyone else, it's worth posting.  And _Tikili-li-Takili-li-Ptoe_ is, you have to admit, a pretty great name for the purpose...
 
 I think the P is silent.
 
@@ -24,7 +24,7 @@ Oh, I guess there might be something vaguely clever in checking for a winning co
 Compiling
 ---------
 
-For what it's worth, I build TlTlT with:
+For what it's worth, I build _TLTLP_ with:
 
     gcc tltlp.c -o ttt `pkg-config --cflags --libs gtk+-3.0 appindicator3-0.1` -rdynamic -Wall -Wextra -std=c89 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition
 
