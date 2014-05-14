@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include "tltlp_glade.h"
 
 GtkButton      *cells[3][3];
 GtkLabel       *player_state;
@@ -18,7 +19,7 @@ char state(void) {
     gchar text[32];
 
     sprintf (text, "%c's Turn", current);
-    gtk_label_set_label (player_state, text);
+    gtk_label_set_label (tltlp_Label_Status, text);
     current = current == 'X' ? 'O' : 'X';
     return current;
 }
@@ -117,7 +118,7 @@ void on_cellbutton_clicked(GtkButton *button, gpointer user_data) {
 
     if (check_win(button)) {
         sprintf(win_text, "%c Wins!", player);
-        gtk_label_set_label (player_state, win_text);
+        gtk_label_set_label (tltlp_Label_Status, win_text);
     }
 }
 
@@ -137,34 +138,22 @@ void on_reset_clicked(GtkButton *button, gpointer user_data) {
 }
 
 int main (int argc, char *argv[]) {
-    GtkBuilder          *builder;
-    GtkWidget           *window;
-    char                 name[64];
-    int                  i,
-                         j;
-    
     gtk_init (&argc, &argv);
-    
-    builder = gtk_builder_new ();
-    gtk_builder_add_from_file (builder, "tltlp.glade", NULL);
-    window = GTK_WIDGET (gtk_builder_get_object (builder, "Main_Tltlp"));
-    gtk_builder_connect_signals (builder, NULL);      
+    load_tltlp_from_file ();
 
     /* Get the nine buttons and put them into our grid */
-    for (i=0;i<3;i++) {
-        for (j=0;j<3;j++) {
-            sprintf(name, "Cell_%d_%d", i+1, j+1);
-            cells[i][j] = (GtkButton *)GTK_WIDGET (gtk_builder_get_object (builder, name));
-        }
-    }
-    /* Grab the status bar label, too */
-    player_state = (GtkLabel *)GTK_WIDGET (gtk_builder_get_object (builder, "Label_Status"));
-    g_object_unref (G_OBJECT (builder));
+    cells[0][0] = tltlp_Cell_1_1;
+    cells[0][1] = tltlp_Cell_1_2;
+    cells[0][2] = tltlp_Cell_1_3;
+    cells[1][0] = tltlp_Cell_2_1;
+    cells[1][1] = tltlp_Cell_2_2;
+    cells[1][2] = tltlp_Cell_2_3;
+    cells[2][0] = tltlp_Cell_3_1;
+    cells[2][1] = tltlp_Cell_3_2;
+    cells[2][2] = tltlp_Cell_3_3;
 
-    gtk_window_set_default_size(GTK_WINDOW(window), 230, 150);
-    gtk_widget_show (window);
-
-    g_signal_connect_swapped(G_OBJECT(window), "destroy",
+    gtk_widget_show ((GtkWidget *)tltlp_Main_Tltlp);
+    g_signal_connect_swapped(G_OBJECT(tltlp_Main_Tltlp), "destroy",
         G_CALLBACK(gtk_main_quit), NULL);
     gtk_main ();
 

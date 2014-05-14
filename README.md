@@ -24,11 +24,15 @@ Oh, I guess there might be something vaguely clever in checking for a winning co
 Compiling
 ---------
 
-For what it's worth, I build TlTlT with:
+After some frustration in manually writing code to connect to Glade, I wrote a "pre-compiler" to generate skeletal code for me.  TlTlP now uses [GladeGlue](https://github.com/jcolag/GladeGlue).  If you compare the current `main()` function with the version in [the previous release](https://github.com/jcolag/Tikili-li-Takili-li-Ptoe/commit/8b9d6332b0066d5ec3f37f88596fbf914be91139), I think you'll agree that loading the cell buttons into the array is less elegant, but it's otherwise worth it, with more-readable code once the one-time-use variables and infrastructure calls are removed.
 
-    gcc tltlp.c -o ttt `pkg-config --cflags --libs gtk+-3.0 appindicator3-0.1` -rdynamic -Wall -Wextra -std=c89 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition
+Beyond that, for what it's worth, I build TlTlP with:
 
-It complains that the event handlers have unused parameters, which is both true and unlikely to change.
+    gcc tltlp.c tltlp_glade.c -o tltlp `pkg-config --cflags --libs gtk+-3.0 appindicator3-0.1` -rdynamic -Wall -Wextra -std=c89 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition
+
+The `tltlp_glade.c` file is generated from _GladeGlue_.
+
+The compiler complains that the event handlers have unused parameters, which is both true and unlikely to change.
 
 In other news, I want to know where `pkg-config` has been all my life...
 
