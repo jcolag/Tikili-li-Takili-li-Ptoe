@@ -15,7 +15,7 @@ Possibly the single most useful feature is that, to my knowledge, no GTK+ tutori
 
 Maybe that's a bad thing, though.  I don't know.
 
-Regardless, if it helps anyone else, it's worth posting.  And Tikili-li-Takili-li-Ptoe is, you have to admit, a pretty great name for the purpose...
+Regardless, if it helps anyone else, it's worth posting.  And _Tikili-li-Takili-li-Ptoe_ is, you have to admit, a pretty great name for the purpose...
 
 I think the P is silent.
 
@@ -26,7 +26,7 @@ Compiling
 
 After some frustration in manually writing code to connect to Glade, I wrote a "pre-compiler" to generate skeletal code for me.  TlTlP now uses [GladeGlue](https://github.com/jcolag/GladeGlue).  If you compare the current `main()` function with the version in [the previous release](https://github.com/jcolag/Tikili-li-Takili-li-Ptoe/commit/8b9d6332b0066d5ec3f37f88596fbf914be91139), I think you'll agree that loading the cell buttons into the array is less elegant, but it's otherwise worth it, with more-readable code once the one-time-use variables and infrastructure calls are removed.
 
-Beyond that, for what it's worth, I build TlTlP with:
+Beyond that, for what it's worth, I build _TlTlP_ with:
 
     gcc tltlp.c tltlp_glade.c -o tltlp `pkg-config --cflags --libs gtk+-3.0 appindicator3-0.1` -rdynamic -Wall -Wextra -std=c89 -pedantic -Wmissing-prototypes -Wstrict-prototypes -Wold-style-definition
 
