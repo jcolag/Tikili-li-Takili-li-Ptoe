@@ -139,7 +139,7 @@ void on_reset_clicked(GtkButton *button, gpointer user_data) {
 
 int main (int argc, char *argv[]) {
     gtk_init (&argc, &argv);
-    load_tltlp_from_file ();
+    load_tltlp_from_file (0);
 
     /* Get the nine buttons and put them into our grid */
     cells[0][0] = tltlp_Cell_1_1;
