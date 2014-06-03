@@ -138,8 +138,19 @@ void on_reset_clicked(GtkButton *button, gpointer user_data) {
 }
 
 int main (int argc, char *argv[]) {
+    char path[256];
+    unsigned int index;
+
+    for(index=0;index<sizeof(path);index++) {
+        path[index] = '\000';
+    }
+    readlink("/proc/self/exe", path, sizeof(path));
+    for(index = sizeof(path) - 1; index > 0 && path[index] != '/'; index--) {
+        path[index] = '\000';
+    }
+
     gtk_init (&argc, &argv);
-    load_tltlp_from_file (0);
+    load_tltlp_from_file (path, 0);
 
     /* Get the nine buttons and put them into our grid */
     cells[0][0] = tltlp_Cell_1_1;
